@@ -1,0 +1,100 @@
+:root {
+    --btn: #FFAFB0;
+    --btnHover: #FF9899;
+    --text: #3A3560;
+    --display: #FFEACB;
+
+} 
+body {
+    background: #C9B6D7;
+    font-family: 'Pirata One', 'sans-serif';
+    margin:0;
+    padding:0;
+    color:var(--text);
+    font-size: 18px;
+    user-select:none;
+}
+button {
+    background-color: var(--btn);
+    color: var(--text);
+    border: 1px solid var(--btnHover);
+    font-size: 18px;
+    font-family:inherit;
+    font-weight: 900;
+    border-radius: 100px;
+}
+button:hover{
+    background-color: var(--btnHover);
+    border: 1px solid var(--text);
+
+}
+
+#display {
+    font-size: 20px;
+    
+    text-align:right;
+    color: rgba(58, 53, 96, 0.8);
+    padding-top:10px;
+    padding-right:5px;
+
+}
+#output {
+    font-size: 29px;
+    text-align:right;
+    color: var(--text);
+    padding-top:10px;
+    padding-right:5px;
+    
+}
+main {
+    height: 93vh;
+    display:grid;
+    justify-content: center;
+    align-items:center;
+}
+#container {
+    padding:10px;
+    border-radius:15px;
+    display: inline-grid;
+    background-color: var(--btnHover);
+    grid-template-columns: 85px 85px 85px 85px;
+    grid-template-rows: 90px 50px 50px 50px 50px 50px 50px;
+    
+    
+
+}
+#screen{
+    grid-area:1/1/2/5;
+    background-color:var(--display);
+    border-radius:12px;
+    
+}
+
+
+
+#grid {
+    display: grid;
+    margin-top:50px;
+    grid-template-columns: 85px 85px 85px 85px;
+    grid-template-rows: 50px 50px 50px 50px 50px;
+    column-gap:1px;
+    row-gap:1px;
+
+}
+#equals {
+  
+   grid-area:5/3/6/5;
+}
+#clear {
+    grid-area:1/1/2/3;
+}
+footer {
+    height: 7vh;
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    display: flex;
+    justify-content: center;
+    
+    
+}
