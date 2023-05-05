@@ -2,8 +2,7 @@ let firstNumber = null;
 let operator = null;
 let secondNumber = null;
 let displayValue = "0";
-let decimalEntered = false;
-
+let result = null;
 
 
 const display = document.getElementById('display');
@@ -34,7 +33,7 @@ function multiply(a, b) {
   
  function divide(a, b) {
     if (b === 0) {
-      return null; // Handle division by zero
+      return "Infinity"; // Handle division by zero
     }
     return a / b;
   }
@@ -59,6 +58,11 @@ function handleClick(e){
     output.textContent=displayValue;
     secondNumber=parseFloat(displayValue)
   }
+  if(e.target.className==="number" && operator !== null && result !== null){
+    firstNumber=result;
+    console.log(firstNumber)
+    display.textContent=`${firstNumber}${operator}${secondNumber}`
+  }
   if(e.target.id==="clearAll"){
     reset()
   }
@@ -68,9 +72,12 @@ function handleClick(e){
     displayValue=displayValue.slice(0, -1)
   }
   if(e.target.id==="equals"){
-    display.textContent+= "="
-    operate(operator);
-
+    if(firstNumber===null || secondNumber === null){
+      display.textContent+="";
+    }else{
+      display.textContent += "="
+      operate(operator);
+    }
   }
 }
 
@@ -97,7 +104,7 @@ function setOperator(e){
   }
 }
 function operate(operator){
-  let result = null;
+  
   switch(operator){
     case "+":
       result = add(firstNumber, secondNumber);
@@ -125,6 +132,7 @@ function reset(){
    secondNumber = null;
    displayValue = "0";
    decimalEntered = false;
+   result=null;
    output.textContent=displayValue;
    display.textContent=""
   

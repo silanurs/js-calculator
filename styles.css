@@ -11,7 +11,6 @@ body {
     padding:0;
     color:var(--text);
     font-size: 18px;
-    user-select:none;
 }
 button {
     
@@ -32,7 +31,7 @@ button:hover{
 
 #display {
     font-size: 20px;
-    
+    height:21px;
     text-align:right;
     color: var(--text);
     padding-top:10px;
@@ -43,9 +42,9 @@ button:hover{
     font-size: 29px;
     text-align:right;
     color: var(--text);
-    padding-top:10px;
+    height:30px;
     padding-right:5px;
-    
+    padding-top:10px; 
 }
 .operation{
     background-color: #ff9500;
