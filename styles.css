@@ -1,13 +1,12 @@
 :root {
-    --btn: #FFAFB0;
-    --btnHover: #FF9899;
-    --text: #3A3560;
-    --display: #FFEACB;
+    --btn: #505050;
+    --text: #ffffff;
+    --display: #000000;
 
 } 
 body {
-    background: #C9B6D7;
-    font-family: 'Pirata One', 'sans-serif';
+    background-color: var(--btn);
+    font-family: 'PT Mono', 'sans-serif';
     margin:0;
     padding:0;
     color:var(--text);
@@ -15,7 +14,7 @@ body {
     user-select:none;
 }
 button {
-    background-color: var(--btn);
+    
     color: var(--text);
     border: 1px solid var(--btnHover);
     font-size: 18px;
@@ -24,16 +23,18 @@ button {
     border-radius: 100px;
 }
 button:hover{
-    background-color: var(--btnHover);
     border: 1px solid var(--text);
 
+}
+#equals{
+    background-color:#ff9500;
 }
 
 #display {
     font-size: 20px;
     
     text-align:right;
-    color: rgba(58, 53, 96, 0.8);
+    color: var(--text);
     padding-top:10px;
     padding-right:5px;
 
@@ -46,6 +47,16 @@ button:hover{
     padding-right:5px;
     
 }
+.operation{
+    background-color: #ff9500;
+}
+.number{
+    background-color: var(--btn)
+}
+#delete, #clearAll{
+    background-color: #D4D4D2;
+    color: #000000;
+}
 main {
     height: 93vh;
     display:grid;
@@ -56,21 +67,17 @@ main {
     padding:10px;
     border-radius:15px;
     display: inline-grid;
-    background-color: var(--btnHover);
+    background-color: var(--display);
     grid-template-columns: 85px 85px 85px 85px;
     grid-template-rows: 90px 50px 50px 50px 50px 50px 50px;
     
-    
-
 }
 #screen{
     grid-area:1/1/2/5;
-    background-color:var(--display);
+    background-color:var(--btn);
     border-radius:12px;
     
 }
-
-
 
 #grid {
     display: grid;
@@ -81,12 +88,14 @@ main {
     row-gap:1px;
 
 }
-#equals {
-  
-   grid-area:5/3/6/5;
+#zero{
+    grid-area:5/1/6/3;
 }
-#clear {
+#clearAll {
     grid-area:1/1/2/3;
+}
+i{
+    color:#000000;
 }
 footer {
     height: 7vh;
@@ -94,7 +103,5 @@ footer {
     position: absolute;
     bottom:0;
     display: flex;
-    justify-content: center;
-    
-    
+    justify-content: center;   
 }
