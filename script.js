@@ -29,8 +29,8 @@ function multiply(a, b) {
   }
   
  function divide(a, b) {
-    if (b === 0) {
-      return "Infinity"; // Handle division by zero
+    if (b == "0") {
+      return "Undefined"; // Handle division by zero
     }
     return a / b;
   }
@@ -48,15 +48,16 @@ function handleClick(e){
   }
   if(e.target.className==="number" && operator != null){
     if(display.textContent.endsWith(operator)){
-      displayValue=""
+      displayValue="";
+      secondNumber=null;
     }
     displayValue+=e.target.innerText
     display.textContent+= e.target.innerText;
     output.textContent=displayValue;
-    secondNumber=parseFloat(displayValue)
+    secondNumber=parseFloat(displayValue);
     operate(operator)
     firstNumber=result
-    secondNumber=null
+    operator=null;
   }
   if(e.target.id==="decimal"){
     if(firstNumber==null){
@@ -118,7 +119,7 @@ function setOperator(e){
         output.textContent=operator;
       }
       if(e.target.innerText==="x"){
-        operator= "x";
+        operator= "*";
         display.textContent+=operator
         output.textContent=operator;
       }
@@ -141,7 +142,7 @@ function operate(operator){
       result= subtract(firstNumber, secondNumber);
       
       break;
-    case "x":
+    case "*":
       result=multiply(firstNumber, secondNumber);
       
       break;
