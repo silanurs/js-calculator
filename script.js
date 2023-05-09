@@ -11,9 +11,6 @@ const buttons = document.querySelectorAll('button');
 const equals = document.getElementById('equals');
 const decimal = document.querySelector('.decimal');
 const operators = document.querySelectorAll('.operation');
-const clear = document.getElementById('clearAll');
-const deletion = document.getElementById('delete');
-const numbers = document.querySelector('.number')
 
 output.textContent=displayValue;
 operators.forEach(operator=> operator.addEventListener('click', setOperator));
@@ -44,24 +41,35 @@ function handleClick(e){
     if(displayValue==="0"){
       displayValue="";
     }
-    displayValue+=e.target.innerText
+    displayValue+=e.target.innerText;
     display.textContent += e.target.innerText;
     output.textContent=displayValue
     firstNumber=parseFloat(displayValue)
   }
-  if(e.target.className==="number" && operator !== null){
-    if( display.textContent.endsWith(operator)){
+  if(e.target.className==="number" && operator != null){
+    if(display.textContent.endsWith(operator)){
       displayValue=""
     }
     displayValue+=e.target.innerText
     display.textContent+= e.target.innerText;
     output.textContent=displayValue;
     secondNumber=parseFloat(displayValue)
+    operate(operator)
+    firstNumber=result
+    secondNumber=null
   }
-  if(e.target.className==="number" && operator !== null && result !== null){
-    firstNumber=result;
-    console.log(firstNumber)
-    display.textContent=`${firstNumber}${operator}${secondNumber}`
+  if(e.target.id==="decimal"){
+    if(firstNumber==null){
+      display.textContent=""
+      displayValue+=""
+    }
+    if(secondNumber==null){
+      display.textContent="";
+      displayValue+="";
+    }
+    displayValue += "."
+    display.textContent+="."
+    output.textContent=displayValue
   }
   if(e.target.id==="clearAll"){
     reset()
@@ -72,35 +80,54 @@ function handleClick(e){
     displayValue=displayValue.slice(0, -1)
   }
   if(e.target.id==="equals"){
-    if(firstNumber===null || secondNumber === null){
+    if(firstNumber===null){
       display.textContent+="";
     }else{
       display.textContent += "="
       operate(operator);
+     output.textContent=result;
+     operator=null;
+     firstNumber=result;
+     secondNumber=null
+     if(operator==null){
+      display.textContent=firstNumber;
+     }
     }
   }
+
 }
 
 function setOperator(e){
-  if(e.target.innerText==="+"){
-    operator = "+";
-    output.textContent=operator;
-    display.textContent+=operator
+  if(displayValue=="0"){
+    operator=null
+    output.textContent="0"
+    display.textContent=""
   }
-  if(e.target.innerText==="-"){
-    operator= "-";
-    display.textContent+=operator
-    output.textContent=operator;
-  }
-  if(e.target.innerText==="*"){
-    operator= "*";
-    display.textContent+=operator
-    output.textContent=operator;
-  }
-  if(e.target.innerText==="/"){
-    operator = "/";
-    display.textContent+=operator
-    output.textContent=operator;
+  if(displayValue != "0"){
+    if(display.textContent.endsWith(operator)){
+      display.textContent+=""
+    }else{
+      if(e.target.innerText==="+"){
+        operator = "+";
+        output.textContent=operator;
+        display.textContent+=operator
+      }
+      if(e.target.innerText==="-"){
+        operator= "-";
+        display.textContent+=operator
+        output.textContent=operator;
+      }
+      if(e.target.innerText==="x"){
+        operator= "x";
+        display.textContent+=operator
+        output.textContent=operator;
+      }
+      if(e.target.innerText==="/"){
+        operator = "/";
+        display.textContent+=operator
+        output.textContent=operator;
+      }
+    }
   }
 }
 function operate(operator){
@@ -108,23 +135,24 @@ function operate(operator){
   switch(operator){
     case "+":
       result = add(firstNumber, secondNumber);
-      output.textContent=result;
+      
       break;
     case "-":
       result= subtract(firstNumber, secondNumber);
-      output.textContent=result;
+      
       break;
-    case "*":
+    case "x":
       result=multiply(firstNumber, secondNumber);
-      output.textContent=result;
+      
       break;
     case "/":
       result= divide(firstNumber, secondNumber);
-      output.textContent=result;
+     
       break;
   }
   return result;
 }
+
 
 function reset(){
    firstNumber = null;
